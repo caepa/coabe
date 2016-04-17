@@ -1,0 +1,141 @@
+html, body {  }
+section {  }
+.ui-content { background: transparent url(img/pattern.png) repeat top left; }
+.ui-page-theme-b .ui-panel-wrapper { background-color: transparent !important; }
+
+/* Background Settings and Images /////////////////////////*/
+.ui-page {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#sectionHome { background-image: url(img/Denver-Night.jpg); }
+
+#sectionHome #description {  }
+#homeLogo { width: 100%; opacity: 0.85; }
+
+#sectionAbout { background-image: url(img/Convention-Bear.Outside.jpg); }
+
+#sectionEvents ul { list-style: none ;}
+
+#sectionVolunteer { background-image: url(img/Volunteer.jpg); }
+
+#sectionLocation { background-image: url(img/Location-Pin.jpg); }
+#sectionLocation .ui-block-a { height: 100%; }
+#sectionLocation #map_canvas { height: 75%; }
+
+/* ui-content each page /////////////////////////*/
+article {  }
+
+.descriptionWrapper { padding: 0 1em !important; background-color: rgba(0, 0, 54, 0.3); position: relative; }
+#description { text-align: justify }
+
+.titleWrapper { width: 95%; position: fixed; bottom: 56px; text-align: right; text-shadow: 0 0 9px #004;}
+#subtitle { margin: 0; font-size: 3em; line-height: .4em; text-transform: lowercase;}
+#title { margin: 0; font-size: 5em; line-height: 1em; text-transform: uppercase; color: silver;}
+
+/* Font /////////////////////////*/
+h1 {  }
+h2 {  }
+h3 {  }
+h4 {  }
+h5 {  }
+h6 {  }
+p {  }
+#photo { position: fixed; bottom: 40px; font-size: 10px }
+a.ui-link { color: white; }
+a.ui-link:hover { color: silver; }
+
+blockquote {
+    border-left: 10px solid #ccc;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    quotes: "\201C""\201D""\2018""\2019";
+}
+blockquote p {
+  display: inline;
+}
+/*blockquote:before {
+    color: #ccc;
+    content: open-quote;
+    font-size: 4em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
+}
+blockquote:after {
+    color: #ccc;
+    content: close-quote;
+    font-size: 4em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;  
+}*/
+
+/* Logo within .panelNav and Small Logos /////////////////////////*/
+.panelLogo { margin: 20px -20px; display: block; width: 17em; height: auto; }
+.footerLogo { height: 3em; vertical-align: middle; background-color: white; }
+a.footerLogoBtn { padding: 0em; margin: 1em; }
+a.footerLogoBtn.ui-btn:hover { border-color: silver; }
+
+/* "Fixed" .sectionLocation-Right-Panel with Internal Scroll /////////////////////////*/
+#sectionLocation .ui-panel .ui-panel-inner {
+    overflow:scroll;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0px;  
+    -webkit-overflow-scrolling: touch;
+}
+
+/* POPUPS /////////////////////////*/
+#popupNewsletter { padding:10px 20px; clear:left; ; }
+#popupContact { padding:10px 20px; width: auto;}
+
+@media (max-width: 50em) {
+#sectionHome .descriptionWrapper { width: 33%; }
+}
+/* For Panel remaining open on large screens */
+@media ( min-width: 34em /* =544px */ ) {
+
+/* Adjust .sectionLocation - Right - Panel Width /////////////////////////*/
+#sectionLocation #panelLocation.ui-panel {
+    width: 50%;
+}
+#sectionLocation #panelLocation.ui-panel-closed {
+    width: 0;
+}
+#sectionLocation .ui-panel-page-content-position-right,
+.ui-panel-dismiss-open.ui-panel-dismiss-position-right {
+    left: 50%;
+    right: -50%;
+}
+#sectionLocation .ui-panel-animate.ui-panel-page-content-position-right.ui-panel-page-content-display-overlay {
+    left: 0;
+    right: 0;
+    -webkit-transform: translate3d(50%,0,0);
+    -moz-transform: translate3d(50%,0,0);
+    transform: translate3d(50%,0,0);
+}
+/* Hide Panel Navigation /////////////////////////*/
+    #navPanel, #nav-panel-btn { display: none; }
+}
+@media ( max-width: 34em ){
+#sectionHome .descriptionWrapper { width: 50%; }
+/* Hide Panel Navigation /////////////////////////*/
+#navBar, #back-btn { display: none; }
+#sectionLocation .ui-block-a { height: 75%; }
+#sectionLocation .ui-block-b { height: 25%; }
+#sectionLocation #map_canvas { height: 75%; }
+}
+/* Location Print Screen /////////////////////////*/
+@media print {  }
+
+
+
+

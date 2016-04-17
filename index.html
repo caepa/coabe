@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>2015 COABE Conference</title>
+    <meta name="author" content="jason" />
+    <meta name="keywords" content="COABE, MPAEA, CAEPA, Adult Ed, ABE, ASE, Adult Education, Conference," />
+    <meta name="description" content="2015 COABE Conference, Denver, CO hosted by CAEPA" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="assets/img/favicon.png" />
+    
+    <link rel="stylesheet" type="text/css" href="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css" />
+    <link rel="stylesheet" type="text/css" href="assets/parsley.css" />
+    <link rel="stylesheet" type="text/css" href="assets/sectionEvents.css" />
+    <link rel="stylesheet" type="text/css" href="assets/coabe.css" />
+    
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.0.5/parsley.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
+    <script src="assets/flowtype.js"></script>
+    <script src="assets/coabe.js"></script>  
+
+<script>
+// START GOOGLE MAPS SCRIPTS /////////////////////
+$( document ).on( "pageshow", function (e,data) {
+    initialize();
+});
+
+$( document ).on( 'click', '#submit', function (e) {
+    e.preventDefault();
+    calculateRoute();
+});
+
+var directionDisplay,
+    directionsService = new google.maps.DirectionsService(),
+    map;
+
+function initialize(){
+    directionsDisplay = new google.maps.DirectionsRenderer();
+    var mapCenter = new google.maps.LatLng(39.743494,-104.99387);
+
+    var myOptions = {
+        zoom:7,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        center: mapCenter
+        };
+
+    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+    directionsDisplay.setMap(map);
+    
+    var marker = new google.maps.Marker({
+        position: mapCenter,
+        map: map,
+        title: 'Convention'
+  });
+    directionsDisplay.setPanel(document.getElementById("directions"));  
+}
+
+function calculateRoute(){
+    var selectedMode  = $("#mode").val(),
+                start = $("#from").val(),
+                end   = $("#to").val();
+
+            if(start == '' || end == ''){
+            // cannot calculate route
+                $("#results").hide();
+                return;
+            }
+            else{
+                var request = {
+                    origin:start, 
+                    destination:end,
+                    travelMode: google.maps.DirectionsTravelMode[selectedMode]
+                };
+
+        directionsService.route(request, function(response, status) {
+            if (status == google.maps.DirectionsStatus.OK) {
+                directionsDisplay.setDirections(response); 
+                $("#results").show();
+                /* var myRoute = response.routes[0].legs[0];
+                    for (var i = 0; i < myRoute.steps.length; i++) {
+                    alert(myRoute.steps[i].instructions);
+                    }*/
+            }
+            else {
+                $("#results").hide();
+            }
+        });        
+        }
+};
+google.maps.event.addDomListener(window, 'load', initialize);
+google.maps.event.trigger( map, "resize");
+
+// END GOOGLE MAPS SCRIPTS /////////////////////
+</script> 
+    
+</head>
+    
+<body class="2015CoabeConference">
+    
+<!--Start Home Page ///////////////////////
+////////////////////////////////////////////////////////////////////-->
+<section data-role="page" id="sectionHome" data-title="Home" data-theme="b">
+    <article role="main" class="ui-content ui-grid-c ui-responsive" id="articleHome">
+        
+        <div class="descriptionWrapper ui-block-a ui-corner-all">
+            <p id="description" style="text-align:center">Gaining a Mile High Perspective</p> 
+            <a href="http://www.COABE.org/conference2015.html" target="_blank" data-rel="external">
+                <img id="homeLogo" alt="2015COABE" src="assets/img/Logo.2015.Conference-Circle.png"></a>
+            </div>
+        <div class="titleWrapper">
+
+            <h1 id="subtitle">Welcome To The</h1>
+            <h2 id="title">Mile High City</h2>
+
+        </div>
+    <p id="photo">Photo:<a href="http://www.santomarco.com/">Matt Santomarco</a></p>
+    </article>  
+</section>
+    
+<!--Start About Page ///////////////////////-->
+<section data-role="page" id="sectionAbout" data-title="About" data-theme="b">
+    <article role="main" class="ui-content ui-grid-a ui-responsive" id="articleAbout">
+        
+    <div class="descriptionWrapper ui-block-a ui-corner-all">
+        <p id="description"><b>Follow the links below for more information!</b></p>
+            <ul>
+                <li><a href="http://www.coabe.org/conference2015register.html" target="_blank" data-rel="external">Register</a></li>
+                <li><a href="http://www.coabe.org/html/pdf/COABE%20Presentations%204.4.15.pdf" target="_blank" data-rel="external">Schedule, updated April 2015</a></li>
+                <li><a href="http://www.coabe.org/conference2015speakers.html" target="_blank" data-rel="external">Speakers</a></li>
+                <li><a href="http://www.coabe.org/conference2015events.html" target="_blank" data-rel="external">Events</a></li>
+                <li><a href="http://vols.pt/TSsjZ7" target="_blank" data-rel="external">Volunteer</a></li>
+            </ul>
+            
+<a href="http://www.CAEPA.org" class="footerLogoBtn ui-btn ui-mini ui-btn-inline ui-corner-all" target="_blank" data-rel="external">
+    <img class="footerLogo" alt="CAEPA" src="assets/img/Logo.CAEPA-Horizontal.jpg"></a>
+<a href="http://www.MPAEA.org" class="footerLogoBtn ui-btn ui-mini ui-btn-inline ui-corner-all" target="_blank" data-rel="external">
+    <img class="footerLogo" alt="MPAEA" src="assets/img/Logo.MPAEA-Color.png"></a>
+<a href="http://www.COABE.org" class="footerLogoBtn ui-btn ui-mini ui-btn-inline ui-corner-all" target="_blank" data-rel="external">
+    <img class="footerLogo" alt="COABE" src="assets/img/Logo.COABE-Vertical.jpg"></a>
+<a href="http://www.COABE.org/conference2015.html" class="footerLogoBtn ui-btn ui-mini ui-btn-inline ui-corner-all" target="_blank" data-rel="external">
+    <img class="footerLogo" alt="2015COABE" src="assets/img/Logo.2015.Conference-Circle.png"></a>
+            </div>
+        <div class="titleWrapper">
+            <h1 id="subtitle">All About The</h1>
+            <h2 id="title">Conference</h2>
+            </div>
+        
+    </article>  
+</section>
+   
+<!--Start Events Page ///////////////////////
+////////////////////////////////////////////////////////////////////-->
+<section data-role="page" id="sectionEvents" data-title="Events" data-theme="b">
+    <article role="main" class="ui-content ui-grid-a ui-responsive" id="articleEvents">
+        
+        <ul class="cb-slideshow">
+            <li><span>Image 01</span><div><h3>red·rocks</h3></div></li>
+            <li><span>Image 02</span><div><h3>min·ing·towns</h3></div></li>
+            <li><span>Image 03</span><div><h3>the·old·west</h3></div></li>
+            <li><span>Image 04</span><div><h3>am·phi·the·a·ter</h3></div></li>
+            <li><span>Image 05</span><div><h3>ghost·towns</h3></div></li>
+            <li><span>Image 06</span><div><h3>his·tor·ic</h3></div></li>
+        </ul>
+        
+        <div class="descriptionWrapper ui-block-a ui-corner-all">
+            <p id="description"><b>Take a break from the conference.</b><br>Events to include trips to:<li>Red Rocks Amphitheater</li><li>Colorado History Museum</li><li>Black Hawk, CO</li><li>and more&hellip;</li></p>
+            </div>
+        <div class="titleWrapper">
+            <h1 id="subtitle">Special</h1>
+            <h2 id="title">Events</h2>
+            </div>
+    </article>
+</section>
+    
+<!--Start Volunteer Page ///////////////////////
+////////////////////////////////////////////////////////////////////-->
+<section data-role="page" id="sectionVolunteer" data-title="Volunteer" data-theme="b">
+    <article role="main" class="ui-content ui-grid-a ui-responsive" id="articleVolunteer">
+        
+        <div class="descriptionWrapper ui-block-a ui-corner-all" style="z-index:999">
+            <blockquote id="description">No Act of Kindness, no matter how small, is ever wasted.<li>Aesop</li></blockquote>
+            <p>We have numerous positions, at all times, throughout the conference!</p>
+            <a href="http://vols.pt/TSsjZ7" target="_blank"><img src="http://www.volunteerspot.com/images/signup.gif" border="0" style="display: block; margin: 1em auto"></a>
+            </div>
+        <div class="titleWrapper">
+            <h1 id="subtitle">Help Us Out!</h1>
+            <h2 id="title">Volunteer</h2>
+        </div>
+    </article>
+</section>
+
+<!-- Start Location Page ///////////////////////
+////////////////////////////////////////////////////////////////////-->
+<section data-role="page" id="sectionLocation" data-title="Location" data-theme="b">
+    <article role="main" class="ui-content ui-grid-a ui-responsive" id="articleLocation">
+        <div class="ui-block-a ui-corner-all" style="padding:1em;">
+            <div id="map_canvas"></div>
+            <div data-role="ui-field-contain" >
+                <label for="from"></label> 
+                    <input type="text" id="from" value="Your Address"/>
+                <label for="to"></label> 
+                    <input type="text" id="to" value="Hyatt Regency Denver at Colorado Convention Center"/>
+            </div>
+        </div>
+        <div class="ui-block-b ui-corner-all" style="padding:1em;">
+            <div data-role="ui-field-contain">
+                <label for="mode" class="select"></label>
+                <select name="select-choice-0" id="mode">
+                    <option value="DRIVING">Driving</option>
+                    <option value="TRANSIT">Public Transit</option>
+                    <option value="BICYCLING">Bicycling</option>
+                </select>
+            </div>
+            <div><a href="#panelLocation" data-role="button" id="submit" data-icon="search">Get directions</a></div>  
+        </div>
+    </article>
+    <div data-role="panel" class="jqm-panal" id="panelLocation" data-position="right" data-display="overlay" data-theme="a" data-dismissible="false">
+        <a href="" class="ui-btn ui-btn-icon-left ui-icon-delete" data-rel="close">Close</a>
+        <div id="directions"></div>
+        <a href="" class="ui-btn ui-btn-icon-left ui-icon-delete" data-rel="close">Close</a>
+    </div>
+</section>
+ 
+<!-- HEADER and FOOTER ///////////////////////
+////////////////////////////////////////////////////////////////////-->    
+<header data-role="header" class="jqm-header" id:="header">
+    <a href="http://CAEPA.org" class="ui-btn ui-btn-left ui-btn-icon-right ui-icon-back" id="back-btn" data-icon='back'>Back to CAEPA.org</a>
+    <a href="#navPanel" class="jqm-navmenu-link ui-btn-left ui-nodisc-icon ui-btn-icon-right" id="nav-panel-btn" data-icon='bars'>Menu</a>
+       <h1>2015 COABE | CAEPA Conference</h1>
+    <a href="https://twitter.com/share" class="twitter-share-button ui-btn ui-btn-right" data-via="caepa_co" data-hashtags="coabe2015">Tweet</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');  
+        </script>
+        <nav data-role="navbar" class="jqm-nav ui-nodisc-icon" id="navBar" data-iconpos='left'>            
+            <ul class="jqm-list">
+                <li><a href="#sectionHome" data-icon="home">Home</a></li>
+                <li><a href="#sectionAbout" data-icon="info">About</a></li>
+                <li><a href="#sectionEvents" data-icon="star">Events</a></li>
+                <li><a href="#sectionVolunteer" data-icon="calendar">Volunteer</a></li>
+                <li><a href="#sectionLocation" data-icon="location">Location</a></li>
+            </ul>
+        </nav>
+        </header>  
+<footer data-role="footer" class="jqm-footer" id="footer" data-tap-toggle="false">
+    <nav data-role="navbar">
+        <ul class="jqm-list">
+            <li><a href="#popupContact" class="ui-btn" data-rel="popup" data-position-to="window">Contact CAEPA</a></li>
+            <li><a href="#popupNewsletter" class="ui-btn" data-rel="popup" data-position-to="window">Subscribe to our Newsletter</a></li>
+        </ul>
+    </nav>
+    </footer>
+    
+<!-- PANEL NAV ///////////////////////
+////////////////////////////////////////////////////////////////////-->
+<nav data-role="panel" class="jqm-nav-panal ui-nodisc-icon" id="navPanel" data-position-fixed="true">
+    <ul data-role="listview" class="jqm-list ui-nodisc-icon ui-listview">
+        <li><a href="" class="ui-btn ui-btn-icon-left ui-icon-delete" data-rel="close">Close</a></li>
+        <li><a href="http://CAEPA.org" class="ui-btn ui-btn-icon-left ui-icon-back" data-rel="">Back to CAEPA.org</a></li>
+    </ul>
+    <img class="panelLogo" alt="2015CoabeConference" src="assets/img/Logo.2015.Conference.png">
+    <ul class="jqm-list ui-nodisc-icon ui-listview">
+        <li><a href="#sectionHome" class="ui-btn ui-btn-icon-left ui-icon-home">Home</a></li>
+        <li><a href="#sectionAbout" class="ui-btn ui-btn-icon-left ui-icon-info">About</a></li>
+        <li><a href="#sectionEvents" class="ui-btn ui-btn-icon-left ui-icon-star">Events</a></li>
+        <li><a href="#sectionVolunteer" class="ui-btn ui-btn-icon-left ui-icon-calendar">Volunteer</a></li>
+        <li><a href="#sectionLocation" class="ui-btn ui-btn-icon-left ui-icon-location">Location</a></li>
+    </ul>
+    </nav>
+
+<!-- POPUP CONTACT ///////////////////////
+////////////////////////////////////////////////////////////////////-->
+<div data-role="popup" id="popupContact" data-theme="a" >
+    
+<form id="mailgun" class="validate" id="mailgun" enctype="multipart/form-data" method="POST" style="display: block;" data-parsley-validate>
+    
+    <label>Contact: <b>info@caepa.org</b></label>
+    
+    <fieldset>  
+        <input id="name" type="text" name="name" placeholder="Name" required >
+            <input id="email" type="text" name="email" placeholder="Email" data-parsley-type="email" required>
+        
+        <input type="hidden" name="subject" value="2015 Conference">
+            <textarea id="message" type="text" name="message" placeholder="Message" rows="15" cols="45"></textarea> 
+        
+<!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+        <div style="position: absolute; left: -5000px;">
+            <input type="text" name="b_ef793a4f17661be843b30ff51_9531680497" tabindex="-1" value="" data-parsley-id="9880">
+                <ul class="parsley-errors-list" id="parsley-id-9880"></ul>
+                </div>
+        
+            <input type="submit" value="Send">
+        
+        </fieldset>
+        </form> 
+        </div>
+    
+    <script type="text/javascript">
+    $('popupContact').parsley();
+    </script>
+
+<!-- POPUP NEWSLETTER ///////////////////////
+////////////////////////////////////////////////////////////////////-->
+<div data-role="popup" id="popupNewsletter" data-theme="a">
+<!-- Begin MailChimp Signup Form -->
+<div id="mc_embed_signup">
+    
+<form action="//caepa.us6.list-manage.com/subscribe/post?u=ef793a4f17661be843b30ff51&amp;id=7377e46553" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate data-parsley-validate novalidate> 
+    <label for="mce-EMAIL"><b>Stay up to date with CAEPA</b></label>     
+    <fieldset>   
+
+        <div class="mc-field-group">
+        <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="Email Address *" data-parsley-type="email" required>
+            </div>
+        
+       <div class="mc-field-group">
+       <label for="mce-group[15093]"><b>Would you like to receive CAEPA's Newsletter?</b></label>
+       <select name="group[15093]" class="REQ_CSS" id="mce-group[15093]">
+            <option value="16">Yes</option>
+            <option value="32">No</option>
+            </select>
+            </div>    
+        
+        <div class="mc-field-group input-group">
+        <strong>Send me information about </strong>
+            <ul><li><input type="checkbox" value="1" name="group[14905][1]" id="mce-group[14905]-14905-0"><label for="mce-group[14905]-14905-0">General News</label></li>
+            <li><input type="checkbox" value="2" name="group[14905][2]" id="mce-group[14905]-14905-1"><label for="mce-group[14905]-14905-1">Events and Conferences</label></li>
+            <li><input type="checkbox" value="4" name="group[14905][4]" id="mce-group[14905]-14905-2"><label for="mce-group[14905]-14905-2">Legislative Alerts</label></li>
+            <li><input type="checkbox" value="8" name="group[14905][8]" id="mce-group[14905]-14905-3"><label for="mce-group[14905]-14905-3">Volunteer Opportunities</label></li>
+            </ul>
+            </div>
+                
+        <div id="mce-responses" class="clear">
+            <div class="response" id="mce-error-response" style="display:none"></div>
+            <div class="response" id="mce-success-response" style="display:none"></div>
+            </div>
+        
+<!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+        <div style="position: absolute; left: -5000px;">
+            <input type="text" name="b_ef793a4f17661be843b30ff51_7377e46553" tabindex="-1" value="" data-parsley-id="9880">
+            <ul class="parsley-errors-list" id="parsley-id-9880"></ul>
+            </div>
+        
+        <div class="clear">
+            <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="btn">
+            </div>
+            
+    </fieldset>
+    </form>
+    </div>
+    
+    <script type="text/javascript">
+    $('popupNewsletter').parsley();
+    </script>
+ 
+<!-- MORE SCRIPTS ///////////////////////
+////////////////////////////////////////////////////////////////////-->    
+<script>
+// START FLOWTYPE OPTIONS /////////////////////
+$('section').flowtype({
+    minimum   : 300,
+    maximum   : 1200,
+    minFont   : 12,
+    maxFont   : 60,
+    fontRatio : 46,
+});
+
+// START MAILGUN /////////////////////    
+var mailgunURL;
+
+mailgunURL = window.location.protocol + "//" + window.location.hostname + '/mailgun.php';
+
+$('#mailgun').on('submit',function(e) {
+  e.preventDefault();
+
+  //$('#mailgun').fadeOut(200);
+  //$('#mailgun').prepend('Your submission is being processed...');
+
+    $.ajax({
+    type     : 'POST',
+    cache    : false,
+    url      : mailgunURL,
+    data     : $(this).serialize(),
+    success  : function(data) {
+        responseSuccess(data);
+        console.log(data);
+    },
+    error  : function(data) {
+        console.log('Silent failure.');
+    }
+  });
+
+    return false;
+
+});
+
+function responseSuccess(data) {
+
+    data = JSON.parse(data);
+
+    if (data.status === 'success') {
+        $('#mailgun').html('Submission sent succesfully.');
+    } else {
+        $('#mailgun').html('Submission failed, please contact directly.');
+    }
+    }
+</script>
+    
+</body>
+</html>
